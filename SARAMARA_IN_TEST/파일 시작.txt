@@ -1,0 +1,25 @@
+1. 최상위 루트 폴더에서 npm init 로 Node.js 개발환경 조성
+
+2. yarn 명령어를 사용하기 위해 최상위 폴더에서 npm install -g yarn 실행해서 yarn 환경 설정
+
+3. client 단은 React 로 구현할 것이기 때문에 최상위 루트 폴더 경로에서 yarn create react-app clinet로 clinet 이름을 가진 클라이언트 단 react 프로젝트 환경설정
+
+4. server단 설정을 위해서 최상위 루트 디렉토리에서 server 이름을 가진 디렉토리를 생성하고 server 디렉토리 내부에서 npm init로 node 개발 환경 설정
+
+5. React와 Node를 동시에 실행시키기 위해 yarn add -D concurrently로 concurrently 패키지 설치
+
+6. React와 Node를 동시에 실행을 위해 최상위 폴더의 package.json 의 script 속성 수정
+
+    "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd server && nodemon app.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn run server\" \"yarn run client\""
+  }
+
+7. server 디렉토리에 entry point 파일 생성후 서버 기본틀 작성을 하든 가져오든 한다.
+
+8. server 디렉토리에서 서버 기본틀에 필요한 패키지들을 다운 받는다 현재는
+    yarn add express morgan path multer fs util mime ejs 명령을 입력하면 될 것이다, 안되면 찾아서 패키지를 다운로드 받는다.
+
+9. yarn run client, yarn run server, yarn run dev 명령어를 각각 확인한다, 동시에 실행하는 명령은 yarn run dev
+.
