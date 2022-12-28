@@ -2,12 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const multer = require('multer');
-const fs = require('fs')
-
+const fs = require('fs');
+const router = require('./routes');
 // express web application server 를 9000번 포트로 생성
 const app = express();
 app.set('port', process.env.PORT || 9000);
-
 //ORM을 테스트해볼 블럭
 const {sequelize} = require('./models');
 const {Users} = require('./models');
@@ -70,7 +69,7 @@ app.engine('html', require('ejs').renderFile);
 
 
 // 서버 처리내용 ............................
-
+app.use('/', router);
 
 //에러 처리를 위한 부분
 app.use((err, req, res, next) => {
