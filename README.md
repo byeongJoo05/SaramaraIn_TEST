@@ -40,3 +40,28 @@
 4. 참고 레퍼런스
 - [Express에서 JWT로 인증시스템 구현하기](https://velog.io/@kshired/Express%EC%97%90%EC%84%9C-JWT%EB%A1%9C-%EC%9D%B8%EC%A6%9D%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-Access-Token%EA%B3%BC-Refresh-Token)
 - [안전하게 로그인 처리하기](https://overcome-the-limits.tistory.com/611)
+
+<br/>
+
+**221228**
+<br/>
+1. 개발 내용
+- 회원가입을 위해 api 명세서대로 join.js 파일을 생성 후 기본 로직을 작성
+- Users ORM을 연결하여 Users Table에 data를 insert 할 수 있도록 작성
+- postman을 이용하여 form-data 형식으로 data를 받아와 테스트
+2. 개발 이슈/고민 & 해결
+- form-data를 req.body로 받아왔다 생각했지만 undefined가 나오면서 받아오지 못했다. 
+```javascript 
+    console.log(req.body)
+```
+를 찍어보았을 때 { } 형식처럼 빈 배열이 나온다. body-parser를 지정하였는데도 문제가 발생하기에 고민을 하게 되었다. -> 최근에는 entry-point app.js의 express 모듈을
+```javascript
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+```
+을 하여 받아온다고 하여 코드 수정을 해주니 문제가 해결되었다.
+
+3. 깨달은 점
+- request는 내가 요청하는 것, response는 내가 보내려는 것이라고 구분 짓고 생각해야한다 (sever면 sever, client면 client). Application Server와 개념이 헷갈리는데 api Sever는 이런 생각을 갖고 있어야된다고 정을 박아야 한다.
+4. 참고 레퍼런스
+- [Expressjs 에서 JSON Request Body 파싱하기](https://semtax.tistory.com/7)

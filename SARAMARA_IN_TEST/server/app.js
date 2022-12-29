@@ -6,6 +6,8 @@ const fs = require('fs');
 const router = require('./routes');
 // express web application server 를 9000번 포트로 생성
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.set('port', process.env.PORT || 9000);
 //ORM을 테스트해볼 블럭
 const {sequelize} = require('./models');

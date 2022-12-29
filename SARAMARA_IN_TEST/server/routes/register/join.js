@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const Users = require('../../models/users');
 
 const join = async (req, res) => {
-    console.log(res.body);
+    console.log(req.body);
     const {email, password, nickname} = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 12);
