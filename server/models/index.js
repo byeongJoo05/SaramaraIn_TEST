@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
 // 모델 가져오기
-const Users = require('./users');
+const Users = require('./Users');
 const Posts = require('./posts');
-const Tokens = require('./tokens');
+const Tokens = require('./Tokens');
 
 const env =  process.env.NODE_ENV||'development';
 
@@ -14,6 +14,7 @@ const db = {};
 const sequelize = new Sequelize(config.database, config.username,config.password, config);
 
 db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
 db.Users = Users;
 db.Posts = Posts;
@@ -27,5 +28,4 @@ Users.associate(db);
 Posts.associate(db);
 Tokens.associate(db);
 
-db.sequelize = sequelize;
 module.exports = db;

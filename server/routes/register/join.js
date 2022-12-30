@@ -1,11 +1,12 @@
 const bcrypt = require('bcrypt');
-const Users = require('../../models/users');
+const Users = require('../../models/Users');
 
 const join = async (req, res) => {
     console.log(req.body);
     const {email, password, nickname} = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password,1);
+    console.log(hashedPassword.length);
     try {
         const newUser = await Users.create({
             type:'LOCAL',

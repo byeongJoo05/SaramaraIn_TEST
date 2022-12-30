@@ -65,3 +65,15 @@ app.use(express.urlencoded({extended:true}));
 - request는 내가 요청하는 것, response는 내가 보내려는 것이라고 구분 짓고 생각해야한다 (sever면 sever, client면 client). Application Server와 개념이 헷갈리는데 api Sever는 이런 생각을 갖고 있어야된다고 정을 박아야 한다.
 4. 참고 레퍼런스
 - [Expressjs 에서 JSON Request Body 파싱하기](https://semtax.tistory.com/7)
+  
+<br/>
+
+**221230**
+<br/>
+1. 개발 내용
+- postman과 ORM을 통하여 users 테이블에 값 생성 성공
+2. 개발 이슈/고민 & 해결
+- ORM create 형식에 맞게 데이터들을 셋팅하였는데도 불구하고, String 길이를 20으로 지정해놓은 hashing처리한 password의 값이 넣어지지가 않았다. console.log 를 통해 찍어보니 hashing처리된 password는 길이가 아주 길어진다는 것을 간과한 것이다. -> users 테이블의 password의 String 길이를 재셋팅을 해주어 문제를 해결하였다. 
+3. 깨달은 점
+- 해싱처리된 문자열 길이를 간과하지 말자. 실물 비밀번호 최대길이만큼 VARCHAR을 잡는다면 삽입과정에 문제가 생긴다.
+4. 참고 레퍼런스
